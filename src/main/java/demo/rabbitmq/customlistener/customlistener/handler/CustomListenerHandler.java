@@ -7,7 +7,7 @@ import org.springframework.amqp.rabbit.listener.api.ChannelAwareMessageListener;
 import org.springframework.stereotype.Component;
 
 /**
- * @Author: baiyongqing
+ * @Author: sush4
  * @Description:
  * @Date: 2020/7/24
  */

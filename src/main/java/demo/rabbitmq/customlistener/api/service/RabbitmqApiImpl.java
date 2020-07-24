@@ -9,7 +9,7 @@ import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import javax.annotation.Resource;
 
 /**
- * @Author: baiyongqing
+ * @Author: sush4
  * @Description:
  * @Date: 2020/7/24
  */
