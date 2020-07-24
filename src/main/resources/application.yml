@@ -1,0 +1,25 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+spring:
+  jmx:
+    enabled: false
+  profiles:
+    # dev:本地开发配置 test:测试服务器配置 prod:云平台服务器配置
+    active: xf
+  rabbitmq:
+    #http api地址
+    managementurl: 127.0.0.1:15672
+    addresses: 127.0.0.1:5672
+    username: guest
+    password: guest
+    virtual-host: /
+    ## 消费端配置
+    listener:
+      simple:
+        concurrency: 5
+        ## manual:手动ack确认
+        acknowledge-mode: manual
+        max-concurrency: 10
+        prefetch: 1
