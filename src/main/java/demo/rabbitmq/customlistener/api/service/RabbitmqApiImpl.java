@@ -5,6 +5,7 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
@@ -13,6 +14,8 @@ import javax.annotation.Resource;
  * @Description:
  * @Date: 2020/7/24
  */
+
+@Service
 public class RabbitmqApiImpl implements RabbitmqApi {
     @Resource
     private RabbitAdmin rabbitAdmin;

@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 
 /**
  * @Author: sush4
- * @Description:
+ * @Description: 生成ConnectionFactory、RabbitAdmin bean对象
  * @Date: 2020/7/24
  */
 

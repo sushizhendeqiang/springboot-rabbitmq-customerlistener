@@ -6,13 +6,14 @@ import org.springframework.stereotype.Component;
 
 /**
  * @Author: sush4
- * @Description:
+ * @Description:读取配置
  * @Date: 2020/7/24
  */
 
 @Component
 @PropertySource("classpath:application.yml")
 public class RabbitmqConstants {
+    //这个是用来做http请求的地址
     @Value("${spring.rabbitmq.managementurl}")
     public String managementurl;
 

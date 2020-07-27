@@ -50,6 +50,13 @@
             <artifactId>hutool-all</artifactId>
             <version>5.3.7</version>
         </dependency>
+        <!--   lombok    -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>

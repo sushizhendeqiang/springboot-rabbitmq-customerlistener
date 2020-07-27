@@ -1,6 +1,7 @@
 package demo.rabbitmq.customlistener.customlistener.handler;
 
 import com.rabbitmq.client.Channel;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.listener.api.ChannelAwareMessageListener;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
+@Slf4j
 public class CustomListenerHandler implements ChannelAwareMessageListener {
     @Override
     public void onMessage(Message message, Channel channel) throws Exception {
@@ -21,8 +23,8 @@ public class CustomListenerHandler implements ChannelAwareMessageListener {
         //解析body消息体
         String body = new String(message.getBody(), messageProperties.getContentEncoding());
 
-        System.out.println("-----------------触发自定义监听器-------------------");
-        System.out.println("messageProperties:" + messageProperties.toString());
-        System.out.println("body:" + body);
+        log.info("-----------------触发自定义监听器-------------------");
+        log.info("messageProperties:" + messageProperties.toString());
+        log.info("body:" + body);
     }
 }

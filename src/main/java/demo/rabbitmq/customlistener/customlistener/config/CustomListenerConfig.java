@@ -7,6 +7,7 @@ import org.springframework.amqp.core.AcknowledgeMode;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -26,11 +27,12 @@ public class CustomListenerConfig {
 
     @Bean
     public SimpleMessageListenerContainer mqMessageContainer() throws AmqpException, IOException {
+        //生成 监听容器
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(rabbitConfig.connectionFactory());
         //设置启动监听超时时间
         container.setConsumerStartTimeout(3000L);
         container.setExposeListenerChannel(true);
-        //设置确认模式
+        //设置确认模式 设置成自动偷偷懒~
         container.setAcknowledgeMode(AcknowledgeMode.AUTO);
         //监听处理类
         container.setMessageListener(customListenerHandler);

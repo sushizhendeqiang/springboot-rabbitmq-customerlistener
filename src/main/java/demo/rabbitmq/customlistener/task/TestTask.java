@@ -2,8 +2,10 @@ package demo.rabbitmq.customlistener.task;
 
 import demo.rabbitmq.customlistener.api.RabbitmqApi;
 import demo.rabbitmq.customlistener.customlistener.service.CustomListenerService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -17,6 +19,7 @@ import java.io.IOException;
 
 @Component
 @EnableScheduling
+@Slf4j
 public class TestTask {
     @Resource
     private RabbitTemplate rabbitTemplate;
@@ -28,7 +31,7 @@ public class TestTask {
     /**
      * 自定义监听测试
      */
-    //@Scheduled(initialDelay = 2000, fixedDelay = 500000)
+    @Scheduled(initialDelay = 2000, fixedDelay = 500000)
     public void testAddMyListener() throws IOException {
         //创建交换机 队列 路由
         rabbitmqApi.createExchange("testexchange", false, false);
@@ -42,7 +45,7 @@ public class TestTask {
      * 消息发送测试
      * @throws IOException
      */
-    //@Scheduled(initialDelay = 5000, fixedDelay = 5000)
+    @Scheduled(initialDelay = 5000, fixedDelay = 5000)
     public void testlisten() throws IOException {
         rabbitTemplate.convertAndSend("testexchange", "test.routingKey", "sendto:myTestListener");
     }
@@ -51,17 +54,18 @@ public class TestTask {
      * 自定义监听测试
      * @throws IOException
      */
-    //@Scheduled(initialDelay = 20000, fixedDelay = 500000)
+    @Scheduled(initialDelay = 20000, fixedDelay = 500000)
     public void testRemoveListener() throws IOException {
         //删除队列监听
         boolean result = customListenerService.removeListener("testqueue");
         if(result){
-            System.out.println("------------------删除队列监听成功------------------");
+            log.info("------------------删除队列监听成功------------------");
         }else{
-            System.out.println("------------------删除队列监听失败------------------");
+            log.info("------------------删除队列监听失败------------------");
         }
         //删除队列、交换机
         rabbitmqApi.deleteQueue("testqueue");
         rabbitmqApi.deleteExchange("testexchange");
+        log.info("------------------删除队列、交换机成功------------------");
     }
 }
